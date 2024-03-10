@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrightHR.CheckoutKata", "BrightHR.CheckoutKata\BrightHR.CheckoutKata.csproj", "{AC2F6323-906B-42B3-A6EA-212567F784C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrightHR.CheckoutKata.Tests", "BrightHR.CheckoutKata.Tests\BrightHR.CheckoutKata.Tests.csproj", "{57498F28-5E21-43B5-AE9D-B3BB12919D1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC2F6323-906B-42B3-A6EA-212567F784C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC2F6323-906B-42B3-A6EA-212567F784C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC2F6323-906B-42B3-A6EA-212567F784C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC2F6323-906B-42B3-A6EA-212567F784C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57498F28-5E21-43B5-AE9D-B3BB12919D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57498F28-5E21-43B5-AE9D-B3BB12919D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57498F28-5E21-43B5-AE9D-B3BB12919D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57498F28-5E21-43B5-AE9D-B3BB12919D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90375A76-3700-43E4-BD11-C02624DACFF8}
+	EndGlobalSection
+EndGlobal
