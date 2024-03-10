@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BrightHR.CheckoutKata.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ab30f3100f3266c57e6e613647486a15029fb47")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5ac2b2e1474a878aa53f45d9792c6fa4ffc9499")]
 [assembly: System.Reflection.AssemblyProductAttribute("BrightHR.CheckoutKata.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BrightHR.CheckoutKata.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
