@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace BrightHR.CheckoutKata;
 
-internal record ScanProductRequest(string ItemSku) { }
+public record ScanProductRequest(string ItemSku) { }
 

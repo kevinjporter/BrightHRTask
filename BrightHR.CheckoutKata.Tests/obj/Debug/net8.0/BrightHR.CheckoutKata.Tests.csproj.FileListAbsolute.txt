@@ -103,3 +103,5 @@ G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata.Tests\obj\Debug\net8.0\refint
 G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata.Tests\obj\Debug\net8.0\BrightHR.CheckoutKata.Tests.pdb
 G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata.Tests\obj\Debug\net8.0\BrightHR.CheckoutKata.Tests.genruntimeconfig.cache
 G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata.Tests\obj\Debug\net8.0\ref\BrightHR.CheckoutKata.Tests.dll
+G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata.Tests\bin\Debug\net8.0\BrightHR.CheckoutKata.dll
+G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata.Tests\bin\Debug\net8.0\BrightHR.CheckoutKata.pdb

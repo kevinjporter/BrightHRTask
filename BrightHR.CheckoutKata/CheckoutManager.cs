@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BrightHR.CheckoutKata
 {
-    internal class CheckoutManager : ICheckout
+    public class CheckoutManager : ICheckout
     {
         private static IList<Item> _cart = new List<Item>();
 

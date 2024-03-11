@@ -1,6 +1,6 @@
 ﻿namespace BrightHR.CheckoutKata.Interfaces;
 
-internal interface ICheckout
+public interface ICheckout
 {
     void ScanProduct(ScanProductRequest scanProductRequest);
     int GetTotalPrice();
