@@ -2,6 +2,6 @@
 
 internal interface ICheckout
 {
-    void ScanProduct(string productSku);
+    void ScanProduct(ScanProductRequest scanProductRequest);
     int GetTotalPrice();
 }
