@@ -10,6 +10,40 @@ namespace BrightHR.CheckoutKata.Tests
     [TestFixture]
     internal class CheckoutTests
     {
+        #region Scan Items 
+        
+        [Test]
+        public void Test_ScanItems_NullRequest_ExpectException()
+        {
+            // ARRANGE
+
+            // ACT
+
+            // ASSERT
+        }
+
+        [Test]
+        public void Test_ScanItems_RequestWithNoItemSku_ExpectException()
+        {
+            // ARRANGE
+
+            // ACT
+
+            // ASSERT
+        }
+
+        [Test]
+        public void Test_ScanItems_ValidRequest_CheckCart()
+        {
+            // ARRANGE
+
+            // ACT
+
+            // ASSERT
+        }
+
+        #endregion
+
         [Test]
         public void Test_AddSingleItem_CheckTotal()
         {
