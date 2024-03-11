@@ -1,7 +1,10 @@
-﻿namespace BrightHR.CheckoutKata.Interfaces;
+﻿using System.Collections.Generic;
+
+namespace BrightHR.CheckoutKata.Interfaces;
 
 public interface ICheckout
 {
     void ScanProduct(ScanProductRequest scanProductRequest);
     int GetTotalPrice();
+    IList<Item> GetItems();
 }

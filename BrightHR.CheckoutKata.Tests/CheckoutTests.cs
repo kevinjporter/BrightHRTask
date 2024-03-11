@@ -42,13 +42,20 @@ namespace BrightHR.CheckoutKata.Tests
         [Test]
         public void Test_ScanItems_ValidRequest_CheckCart()
         {
-            Assert.Inconclusive();
-
             // ARRANGE
+            var checkoutManager = new CheckoutManager();
+            var scan1 = new ScanProductRequest("A");
+            var scan2 = new ScanProductRequest("B");
+            var scan3 = new ScanProductRequest("A");
 
             // ACT
+            checkoutManager.ScanProduct(scan1);
+            checkoutManager.ScanProduct(scan2);
+            checkoutManager.ScanProduct(scan3);
 
             // ASSERT
+            var cart = checkoutManager.GetItems();
+            Assert.That(cart.Count, Is.EqualTo(3));
         }
 
         #endregion
