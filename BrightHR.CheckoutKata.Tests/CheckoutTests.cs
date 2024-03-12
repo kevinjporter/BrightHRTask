@@ -18,7 +18,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_ScanItems_NullRequest_ExpectException()
         {
             // ARRANGE
-            var checkout = new CheckoutManager();
+            var checkout = new CheckoutManager(TestData.Products);
 
             // ACT
 
@@ -30,7 +30,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_ScanItems_RequestWithNoItemSku_ExpectException()
         {
             // ARRANGE
-            var checkout = new CheckoutManager();
+            var checkout = new CheckoutManager(TestData.Products);
             var request = new ScanProductRequest("");
 
             // ACT
@@ -43,7 +43,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_ScanItems_ValidRequest_CheckCart()
         {
             // ARRANGE
-            var checkoutManager = new CheckoutManager();
+            var checkoutManager = new CheckoutManager(TestData.Products);
             var scan1 = new ScanProductRequest("A");
             var scan2 = new ScanProductRequest("B");
             var scan3 = new ScanProductRequest("A");
@@ -54,7 +54,7 @@ namespace BrightHR.CheckoutKata.Tests
             checkoutManager.ScanProduct(scan3);
 
             // ASSERT
-            var cart = checkoutManager.GetItems();
+            var cart = checkoutManager.GetBasket();
             Assert.That(cart.Count, Is.EqualTo(3));
         }
 

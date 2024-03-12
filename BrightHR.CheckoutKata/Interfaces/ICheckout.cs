@@ -6,5 +6,5 @@ public interface ICheckout
 {
     void ScanProduct(ScanProductRequest scanProductRequest);
     int GetTotalPrice();
-    IList<Item> GetItems();
+    IList<string> GetBasket();
 }
