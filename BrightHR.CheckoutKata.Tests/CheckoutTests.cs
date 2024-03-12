@@ -108,7 +108,7 @@ namespace BrightHR.CheckoutKata.Tests
         }
 
         [Test]
-        public void Test_TriggerItemOffer_CheckTotal()
+        public void Test_TriggerItemOfferOnce_ForOneProduct_CheckTotal()
         {
             // ARRANGE
             var checkout = new CheckoutManager(TestData.Products);
@@ -124,7 +124,24 @@ namespace BrightHR.CheckoutKata.Tests
         }
 
         [Test]
-        public void Test_TriggerMultipleItemOffers_CheckTotal()
+        public void Test_TriggerItemOfferTwice_ForOneProduct_CheckTotal()
+        {
+            // ARRANGE
+            var checkout = new CheckoutManager(TestData.Products);
+
+            // ACT
+            checkout.ScanProduct(new ScanProductRequest("B"));
+            checkout.ScanProduct(new ScanProductRequest("B"));
+            checkout.ScanProduct(new ScanProductRequest("B"));
+            checkout.ScanProduct(new ScanProductRequest("B"));
+
+            // ASSERT
+            var total = checkout.GetTotalPrice();
+            Assert.That(total, Is.EqualTo(90));
+        }
+
+        [Test]
+        public void Test_TriggerItemOffersForDifferentProducts_CheckTotal()
         {
             // ARRANGE
             var checkout = new CheckoutManager(TestData.Products);
@@ -136,10 +153,11 @@ namespace BrightHR.CheckoutKata.Tests
 
             checkout.ScanProduct(new ScanProductRequest("A"));
             checkout.ScanProduct(new ScanProductRequest("A"));
+            checkout.ScanProduct(new ScanProductRequest("A"));
 
             // ASSERT
             var total = checkout.GetTotalPrice();
-            Assert.That(total, Is.EqualTo(175));
+            Assert.That(total, Is.EqualTo(205));
         }
     }
 }
