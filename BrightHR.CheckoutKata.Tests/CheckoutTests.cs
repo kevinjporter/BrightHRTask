@@ -63,61 +63,83 @@ namespace BrightHR.CheckoutKata.Tests
         [Test]
         public void Test_AddSingleItem_CheckTotal()
         {
-            Assert.Inconclusive();
-
             // ARRANGE
+            var checkout = new CheckoutManager(TestData.Products);
 
             // ACT
+            checkout.ScanProduct(new ScanProductRequest("B"));
 
             // ASSERT
+            var total = checkout.GetTotalPrice();
+            Assert.That(total, Is.EqualTo(30));
         }
 
         [Test]
         public void Test_AddOneOfEachItem_CheckTotal()
         {
-            Assert.Inconclusive();
-
             // ARRANGE
+            var checkout = new CheckoutManager(TestData.Products);
 
             // ACT
+            checkout.ScanProduct(new ScanProductRequest("A"));
+            checkout.ScanProduct(new ScanProductRequest("B"));
+            checkout.ScanProduct(new ScanProductRequest("C"));
+            checkout.ScanProduct(new ScanProductRequest("D"));
 
             // ASSERT
+            var total = checkout.GetTotalPrice();
+            Assert.That(total, Is.EqualTo(115));
         }
 
         [Test]
         public void Test_AddMultipliesOfSomeItems_CheckTotal()
         {
-            Assert.Inconclusive();
-
             // ARRANGE
+            var checkout = new CheckoutManager(TestData.Products);
 
             // ACT
+            checkout.ScanProduct(new ScanProductRequest("C"));
+            checkout.ScanProduct(new ScanProductRequest("A"));
+            checkout.ScanProduct(new ScanProductRequest("C"));
 
             // ASSERT
+            var total = checkout.GetTotalPrice();
+            Assert.That(total, Is.EqualTo(90));
         }
 
         [Test]
-        public void Test_AddSingleItemWithItemOffer_CheckTotal()
+        public void Test_TriggerItemOffer_CheckTotal()
         {
-            Assert.Inconclusive();
-
             // ARRANGE
+            var checkout = new CheckoutManager(TestData.Products);
 
             // ACT
+            checkout.ScanProduct(new ScanProductRequest("B"));
+            checkout.ScanProduct(new ScanProductRequest("A"));
+            checkout.ScanProduct(new ScanProductRequest("B"));
 
             // ASSERT
+            var total = checkout.GetTotalPrice();
+            Assert.That(total, Is.EqualTo(95));
         }
 
         [Test]
-        public void Test_AddMixtureOfItemsWithItemOffers_CheckTotal()
+        public void Test_TriggerMultipleItemOffers_CheckTotal()
         {
-            Assert.Inconclusive();
-
             // ARRANGE
+            var checkout = new CheckoutManager(TestData.Products);
 
             // ACT
+            checkout.ScanProduct(new ScanProductRequest("B"));
+            checkout.ScanProduct(new ScanProductRequest("B"));
+            checkout.ScanProduct(new ScanProductRequest("B"));
+
+            checkout.ScanProduct(new ScanProductRequest("A"));
+            checkout.ScanProduct(new ScanProductRequest("A"));
 
             // ASSERT
+            var total = checkout.GetTotalPrice();
+            Assert.That(total, Is.EqualTo(175));
         }
     }
 }
