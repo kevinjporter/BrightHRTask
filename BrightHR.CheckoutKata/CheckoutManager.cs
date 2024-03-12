@@ -38,19 +38,16 @@ namespace BrightHR.CheckoutKata
 
                     if (applySpecialOffer)
                     {
-                        if (x.Quantity >= product.PriceInformation.SpecialPrice.Quantity)
-                        {
-                            // work out if the special price needs to be applied more than once (e.g. buying 4x"B" would result in (2x45)x2
-                            // if there is a remainder (e.g. buying 3x"B" would result in special offer applied for 2 items
-                            // then the remaining item would be charged at normal price)
-                            var specialOfferQuantity = Math.DivRem(x.Quantity, product.PriceInformation.SpecialPrice.Quantity, out var remainingQuantiy);
+                        // work out if the special price needs to be applied more than once (e.g. buying 4x"B" would result in (2x45)x2
+                        // if there is a remainder (e.g. buying 3x"B" would result in special offer applied for 2 items
+                        // then the remaining item would be charged at normal price)
+                        var specialOfferQuantity = Math.DivRem(x.Quantity, product.PriceInformation.SpecialPrice.Quantity, out var remainingQuantiy);
 
-                            totalPrice += (specialOfferQuantity * product.PriceInformation.SpecialPrice.DiscountedPrice);
+                        totalPrice += (specialOfferQuantity * product.PriceInformation.SpecialPrice.DiscountedPrice);
 
-                            if (remainingQuantiy > 0)
-                                totalPrice += (remainingQuantiy * product.PriceInformation.UnitPrice);   
-                        }
-                    }
+                        if (remainingQuantiy > 0)
+                            totalPrice += (remainingQuantiy * product.PriceInformation.UnitPrice);   
+                }
                     else
                     {
                         totalPrice += (x.Quantity * product.PriceInformation.UnitPrice);
