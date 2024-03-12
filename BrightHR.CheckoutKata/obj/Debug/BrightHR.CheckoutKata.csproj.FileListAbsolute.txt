@@ -1,6 +1,0 @@
-G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata\bin\Debug\BrightHR.CheckoutKata.dll
-G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata\bin\Debug\BrightHR.CheckoutKata.pdb
-G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata\obj\Debug\BrightHR.CheckoutKata.csproj.AssemblyReference.cache
-G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata\obj\Debug\BrightHR.CheckoutKata.csproj.CoreCompileInputs.cache
-G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata\obj\Debug\BrightHR.CheckoutKata.dll
-G:\dev\BrightHR.CheckoutKata\BrightHR.CheckoutKata\obj\Debug\BrightHR.CheckoutKata.pdb
