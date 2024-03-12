@@ -5,15 +5,10 @@ using System.Linq;
 
 namespace BrightHR.CheckoutKata;
 
-public class CheckoutManager : ICheckout
+public class CheckoutManager(IList<Item> products) : ICheckout
 {
     private IList<string> _basket;
-    private IList<Item> _products;
-
-    public CheckoutManager(IList<Item> products)
-    {
-        _products = products;
-    }
+    private IList<Item> _products = products;
 
     public int GetTotalPrice()
     {

@@ -109,6 +109,8 @@ internal class CheckoutTests
 
     #endregion
 
+    #region Get Total Price
+
     [Test]
     public void Test_AddSingleItem_CheckTotal()
     {
@@ -208,4 +210,6 @@ internal class CheckoutTests
         var total = checkout.GetTotalPrice();
         Assert.That(total, Is.EqualTo(205));
     }
+
+    #endregion
 }
