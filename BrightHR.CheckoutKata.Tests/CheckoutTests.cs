@@ -12,13 +12,54 @@ namespace BrightHR.CheckoutKata.Tests
     [TestFixture]
     internal class CheckoutTests
     {
+        private List<Item> _itemData;
+
+        [SetUp]
+        public void SetupItemData()
+        {
+            _itemData = new List<Item>
+            {
+                {
+                    ItemBuilder
+                        .Start()
+                            .WithSku("A")
+                            .WithUnitPriceAndOffer(50, 3, 130)
+                        .Build()
+                },
+
+                {
+                    ItemBuilder
+                        .Start()
+                            .WithSku("B")
+                            .WithUnitPriceAndOffer(30, 2, 45)
+                        .Build()
+                },
+
+                {
+                     ItemBuilder
+                        .Start()
+                            .WithSku("C")
+                            .WithUnitPrice(20)
+                        .Build()
+                },
+
+                {
+                    ItemBuilder
+                        .Start()
+                            .WithSku("D")
+                            .WithUnitPrice(15)
+                        .Build()
+                }
+            };
+        }
+
         #region Scan Items 
         
         [Test]
         public void Test_ScanItems_NullRequest_ExpectException()
         {
             // ARRANGE
-            var checkout = new CheckoutManager(TestData.Products);
+            var checkout = new CheckoutManager(_itemData);
 
             // ACT
 
@@ -30,7 +71,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_ScanItems_RequestWithNoItemSku_ExpectException()
         {
             // ARRANGE
-            var checkout = new CheckoutManager(TestData.Products);
+            var checkout = new CheckoutManager(_itemData);
             var request = new ScanProductRequest("");
 
             // ACT
@@ -43,7 +84,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_ScanItems_ValidRequest_CheckCart()
         {
             // ARRANGE
-            var checkoutManager = new CheckoutManager(TestData.Products);
+            var checkoutManager = new CheckoutManager(_itemData);
             var scan1 = new ScanProductRequest("A");
             var scan2 = new ScanProductRequest("B");
             var scan3 = new ScanProductRequest("A");
@@ -62,7 +103,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_ScanItem_SkuNotFound_ExpectException()
         {
             // ARRANGE
-            var checkout = new CheckoutManager(TestData.Products);
+            var checkout = new CheckoutManager(_itemData);
             var request = new ScanProductRequest("ZZ");
 
             // ACT
@@ -77,7 +118,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_AddSingleItem_CheckTotal()
         {
             // ARRANGE
-            var checkout = new CheckoutManager(TestData.Products);
+            var checkout = new CheckoutManager(_itemData);
 
             // ACT
             checkout.ScanProduct(new ScanProductRequest("B"));
@@ -91,7 +132,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_AddOneOfEachItem_CheckTotal()
         {
             // ARRANGE
-            var checkout = new CheckoutManager(TestData.Products);
+            var checkout = new CheckoutManager(_itemData);
 
             // ACT
             checkout.ScanProduct(new ScanProductRequest("A"));
@@ -108,7 +149,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_AddMultipliesOfSomeItems_CheckTotal()
         {
             // ARRANGE
-            var checkout = new CheckoutManager(TestData.Products);
+            var checkout = new CheckoutManager(_itemData);
 
             // ACT
             checkout.ScanProduct(new ScanProductRequest("C"));
@@ -124,7 +165,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_TriggerItemOfferOnce_ForOneProduct_CheckTotal()
         {
             // ARRANGE
-            var checkout = new CheckoutManager(TestData.Products);
+            var checkout = new CheckoutManager(_itemData);
 
             // ACT
             checkout.ScanProduct(new ScanProductRequest("B"));
@@ -140,7 +181,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_TriggerItemOfferTwice_ForOneProduct_CheckTotal()
         {
             // ARRANGE
-            var checkout = new CheckoutManager(TestData.Products);
+            var checkout = new CheckoutManager(_itemData);
 
             // ACT
             checkout.ScanProduct(new ScanProductRequest("B"));
@@ -157,7 +198,7 @@ namespace BrightHR.CheckoutKata.Tests
         public void Test_TriggerItemOffersForDifferentProducts_CheckTotal()
         {
             // ARRANGE
-            var checkout = new CheckoutManager(TestData.Products);
+            var checkout = new CheckoutManager(_itemData);
 
             // ACT
             checkout.ScanProduct(new ScanProductRequest("B"));

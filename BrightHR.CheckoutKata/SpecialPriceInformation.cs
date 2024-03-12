@@ -1,5 +1,7 @@
 ﻿namespace BrightHR.CheckoutKata;
 
-public record SpecialPriceInformation(int Quantity, int DiscountedPrice)
+public class SpecialPriceInformation()
 {
+    public int Quantity { get; set; }
+    public int DiscountedPrice { get; set; }
 }

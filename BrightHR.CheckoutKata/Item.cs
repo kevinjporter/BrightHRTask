@@ -1,5 +1,7 @@
 ﻿namespace BrightHR.CheckoutKata;
 
-public record Item(string Sku, PriceInformation PriceInformation)
+public class Item()
 {
+    public string Sku { get; set; }
+    public PriceInformation PriceInformation { get; set; }
 }
