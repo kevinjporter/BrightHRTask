@@ -52,18 +52,36 @@ public class CheckoutManager(IList<Item> products) : ICheckout
         return totalPrice;
     }
 
-    public void ScanProduct(ScanProductRequest scanProductRequest)
+    public ScanProductResponse ScanProduct(ScanProductRequest scanProductRequest)
     {
-        if (scanProductRequest == null) throw new ArgumentNullException("Scan product request is empty");
-        if (string.IsNullOrEmpty(scanProductRequest.ItemSku)) throw new ArgumentNullException("Item sku is required");
+        var response = new ScanProductResponse();
 
-        if (_basket == null) _basket = new List<string>();
+        if (scanProductRequest == null)
+        {
+            response.ErrorMessage = CheckoutErrors.RequestIsNull;
+            return response;
+        }
+
+        if (string.IsNullOrEmpty(scanProductRequest.ItemSku))
+        {
+            response.ErrorMessage = CheckoutErrors.ItemSkuIsRequired;
+            return response;
+        }
+
+        _basket ??= [];
 
         var item = FindItem(scanProductRequest.ItemSku);
-
-        if (item == null) throw new Exception($"Item with SKU '{scanProductRequest.ItemSku}' not found and will not be added to checkout.");
+        
+        if (item == null)
+        {
+            response.ErrorMessage = CheckoutErrors.ItemNotFound(scanProductRequest.ItemSku);
+            return response;
+        }
 
         _basket.Add(scanProductRequest.ItemSku);
+        response.ItemScanned = true;
+
+        return response;
     }
 
     public IList<string> GetBasket()

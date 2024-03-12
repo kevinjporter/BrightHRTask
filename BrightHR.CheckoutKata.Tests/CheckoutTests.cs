@@ -51,28 +51,32 @@ internal class CheckoutTests
     #region Scan Items 
     
     [Test]
-    public void Test_ScanItems_NullRequest_ExpectException()
+    public void Test_ScanItems_NullRequest_ExpectErrorResponse()
     {
         // ARRANGE
         var checkout = new CheckoutManager(_itemData);
 
         // ACT
+        var response = checkout.ScanProduct(null);
 
         // ASSERT
-        Assert.That(() => checkout.ScanProduct(null), Throws.TypeOf<ArgumentNullException>().With.Message.Contain("Scan product request is empty"));
+        Assert.That(response.ItemScanned, Is.EqualTo(false));
+        Assert.That(response.ErrorMessage, Is.EqualTo(CheckoutErrors.RequestIsNull));
     }
 
     [Test]
-    public void Test_ScanItems_RequestWithNoItemSku_ExpectException()
+    public void Test_ScanItems_RequestWithNoItemSku_ExpectErrorResponse()
     {
         // ARRANGE
         var checkout = new CheckoutManager(_itemData);
         var request = new ScanProductRequest("");
 
         // ACT
+        var response = checkout.ScanProduct(request);
 
         // ASSERT
-        Assert.That(() => checkout.ScanProduct(request), Throws.TypeOf<ArgumentNullException>().With.Message.Contain("Item sku is required"));
+        Assert.That(response.ItemScanned, Is.EqualTo(false));
+        Assert.That(response.ErrorMessage, Is.EqualTo(CheckoutErrors.ItemSkuIsRequired));
     }
 
     [Test]
@@ -85,26 +89,37 @@ internal class CheckoutTests
         var scan3 = new ScanProductRequest("A");
 
         // ACT
-        checkoutManager.ScanProduct(scan1);
-        checkoutManager.ScanProduct(scan2);
-        checkoutManager.ScanProduct(scan3);
+        var scan1Response = checkoutManager.ScanProduct(scan1);
+        var scan2Response = checkoutManager.ScanProduct(scan2);
+        var scan3Response = checkoutManager.ScanProduct(scan3);
 
         // ASSERT
+        Assert.That(scan1Response.ItemScanned, Is.EqualTo(true));
+        Assert.That(scan1Response.ErrorMessage, Is.Null);
+        
+        Assert.That(scan2Response.ItemScanned, Is.EqualTo(true));
+        Assert.That(scan2Response.ErrorMessage, Is.Null);
+        
+        Assert.That(scan3Response.ItemScanned, Is.EqualTo(true));
+        Assert.That(scan3Response.ErrorMessage, Is.Null);
+
         var cart = checkoutManager.GetBasket();
         Assert.That(cart.Count, Is.EqualTo(3));
     }
 
     [Test]
-    public void Test_ScanItem_SkuNotFound_ExpectException()
+    public void Test_ScanItem_SkuNotFound_ExpectErrorResponse()
     {
         // ARRANGE
         var checkout = new CheckoutManager(_itemData);
         var request = new ScanProductRequest("ZZ");
 
         // ACT
+        var response = checkout.ScanProduct(request);
 
         // ASSERT
-        Assert.That(() => checkout.ScanProduct(request), Throws.TypeOf<Exception>().With.Message.Contain("Item with SKU 'ZZ' not found and will not be added to checkout"));
+        Assert.That(response.ItemScanned, Is.EqualTo(false));
+        Assert.That(response.ErrorMessage, Is.EqualTo(CheckoutErrors.ItemNotFound("ZZ")));
     }
 
     #endregion
