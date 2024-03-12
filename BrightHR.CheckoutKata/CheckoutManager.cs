@@ -7,8 +7,8 @@ namespace BrightHR.CheckoutKata;
 
 public class CheckoutManager : ICheckout
 {
-    private IList<string> _basket = new List<string>();
-    private IList<Item> _products = new List<Item>();
+    private IList<string> _basket;
+    private IList<Item> _products;
 
     public CheckoutManager(IList<Item> products)
     {
@@ -25,7 +25,7 @@ public class CheckoutManager : ICheckout
 
         itemsAndQuantities.ForEach(x =>
         {
-            var product = _products.SingleOrDefault(p => p.Sku == x.ItemSku);
+            var product = FindItem(x.ItemSku);
 
             if (product != null)
             {
@@ -62,7 +62,11 @@ public class CheckoutManager : ICheckout
         if (scanProductRequest == null) throw new ArgumentNullException("Scan product request is empty");
         if (string.IsNullOrEmpty(scanProductRequest.ItemSku)) throw new ArgumentNullException("Item sku is required");
 
-        // TODO: Check if product is available
+        if (_basket == null) _basket = new List<string>();
+
+        var item = FindItem(scanProductRequest.ItemSku);
+
+        if (item == null) throw new Exception($"Item with SKU '{scanProductRequest.ItemSku}' not found and will not be added to checkout.");
 
         _basket.Add(scanProductRequest.ItemSku);
     }
@@ -70,5 +74,12 @@ public class CheckoutManager : ICheckout
     public IList<string> GetBasket()
     {
         return _basket;
+    }
+
+    private Item FindItem(string itemSku)
+    {
+        if (_products == null || _products.Count == 0) return null;
+
+        return _products.SingleOrDefault(p => p.Sku == itemSku);
     }
 }

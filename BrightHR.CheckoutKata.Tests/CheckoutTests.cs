@@ -58,6 +58,19 @@ namespace BrightHR.CheckoutKata.Tests
             Assert.That(cart.Count, Is.EqualTo(3));
         }
 
+        [Test]
+        public void Test_ScanItem_SkuNotFound_ExpectException()
+        {
+            // ARRANGE
+            var checkout = new CheckoutManager(TestData.Products);
+            var request = new ScanProductRequest("ZZ");
+
+            // ACT
+
+            // ASSERT
+            Assert.That(() => checkout.ScanProduct(request), Throws.TypeOf<Exception>().With.Message.Contain("Item with SKU 'ZZ' not found and will not be added to checkout"));
+        }
+
         #endregion
 
         [Test]
